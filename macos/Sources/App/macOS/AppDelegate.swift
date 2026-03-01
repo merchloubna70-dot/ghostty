@@ -1382,18 +1382,20 @@ extension AppDelegate: NSMenuItemValidation {
             return NSApp.keyWindow is TerminalWindow
 
         case #selector(undo(_:)):
+            let undoLabel = "Undo".withCString { String(cString: ghostty_translate($0)) }
             if undoManager.canUndo {
-                item.title = "Undo \(undoManager.undoActionName)"
+                item.title = "\(undoLabel) \(undoManager.undoActionName)"
             } else {
-                item.title = "Undo"
+                item.title = undoLabel
             }
             return undoManager.canUndo
 
         case #selector(redo(_:)):
+            let redoLabel = "Redo".withCString { String(cString: ghostty_translate($0)) }
             if undoManager.canRedo {
-                item.title = "Redo \(undoManager.redoActionName)"
+                item.title = "\(redoLabel) \(undoManager.redoActionName)"
             } else {
-                item.title = "Redo"
+                item.title = redoLabel
             }
             return undoManager.canRedo
 
