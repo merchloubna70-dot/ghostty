@@ -578,3 +578,25 @@ msgstr "显示所有标签页"
 msgid "Hide Tab Overview"
 msgstr "隐藏标签页概览"
 
+# Tab title bar context menu (Ghostty-added items)
+#: macos/Sources/Features/Terminal/Window\ Styles/TerminalWindow.swift
+msgid "Close Tabs to the Right"
+msgstr "关闭右侧标签页"
+
+#: macos/Sources/Features/Terminal/Window\ Styles/TerminalWindow.swift
+msgid "Rename Tab..."
+msgstr "重命名标签页…"
+
+# Tab title bar context menu (system-injected items)
+#: macos/Sources/Features/Terminal/Window\ Styles/TerminalWindow.swift
+msgid "Close This Tab"
+msgstr "关闭此标签页"
+
+#: macos/Sources/Features/Terminal/Window\ Styles/TerminalWindow.swift
+msgid "Close Other Tabs"
+msgstr "关闭其他标签页"
+
+#: macos/Sources/Features/Terminal/Window\ Styles/TerminalWindow.swift
+msgid "Move Tab to New Window"
+msgstr "将标签页移至新窗口"
+

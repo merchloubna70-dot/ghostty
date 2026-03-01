@@ -1150,8 +1150,8 @@ class AppDelegate: NSObject,
     // MARK: - Dock Menu
 
     private func reloadDockMenu() {
-        let newWindow = NSMenuItem(title: "New Window", action: #selector(newWindow), keyEquivalent: "")
-        let newTab = NSMenuItem(title: "New Tab", action: #selector(newTab), keyEquivalent: "")
+        let newWindow = NSMenuItem(title: "New Window".withCString { String(cString: ghostty_translate($0)) }, action: #selector(newWindow), keyEquivalent: "")
+        let newTab = NSMenuItem(title: "New Tab".withCString { String(cString: ghostty_translate($0)) }, action: #selector(newTab), keyEquivalent: "")
 
         dockMenu.removeAllItems()
         dockMenu.addItem(newWindow)

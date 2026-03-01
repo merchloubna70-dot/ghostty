@@ -719,8 +719,17 @@ extension TerminalWindow {
             .flatMap { $0.target as? NSWindow }
             .flatMap { $0.windowController as? TerminalController }
 
+        // Translate system-injected tab context menu items
+        for menuItem in menu.items {
+            guard let action = menuItem.action else { continue }
+            let sel = NSStringFromSelector(action)
+            if ["performClose:", "performCloseOtherTabs:", "moveTabToNewWindow:", "toggleTabOverview:"].contains(sel) {
+                menuItem.title = menuItem.title.withCString { String(cString: ghostty_translate($0)) }
+            }
+        }
+
         // Close tabs to the right
-        let item = NSMenuItem(title: "Close Tabs to the Right", action: #selector(TerminalController.closeTabsOnTheRight(_:)), keyEquivalent: "")
+        let item = NSMenuItem(title: "Close Tabs to the Right".withCString { String(cString: ghostty_translate($0)) }, action: #selector(TerminalController.closeTabsOnTheRight(_:)), keyEquivalent: "")
         item.identifier = Self.closeTabsOnRightMenuItemIdentifier
         item.target = targetController
         item.setImageIfDesired(systemSymbolName: "xmark")
@@ -767,7 +776,7 @@ extension TerminalWindow {
         menu.addItem(separator)
 
         // Rename Tab...
-        let changeTitleItem = NSMenuItem(title: "Rename Tab...", action: #selector(TerminalWindow.renameTabFromContextMenu(_:)), keyEquivalent: "")
+        let changeTitleItem = NSMenuItem(title: "Rename Tab...".withCString { String(cString: ghostty_translate($0)) }, action: #selector(TerminalWindow.renameTabFromContextMenu(_:)), keyEquivalent: "")
         changeTitleItem.identifier = Self.changeTitleMenuItemIdentifier
         changeTitleItem.target = self
         changeTitleItem.representedObject = target?.window
