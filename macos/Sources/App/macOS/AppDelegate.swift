@@ -168,6 +168,18 @@ class AppDelegate: NSObject,
     // MARK: - NSApplicationDelegate
 
     func applicationWillFinishLaunching(_ notification: Notification) {
+        // Sync the app-level AppleLanguages with the system preferred languages.
+        // macOS uses the per-app AppleLanguages key (stored in the app's user defaults
+        // domain) to select which lproj to load for xib localization and which language
+        // to use for system-injected menu items (Services, Hide Ghostty, Developer menu).
+        // If the app was previously run without this key, macOS falls back to "en".
+        // We set it here — before any UI is loaded — so system menus appear in the
+        // user's preferred language on the very first launch.
+        let systemLanguages = NSLocale.preferredLanguages
+        if !systemLanguages.isEmpty {
+            UserDefaults.standard.set(systemLanguages, forKey: "AppleLanguages")
+        }
+
         UserDefaults.standard.register(defaults: [
             // Disable the automatic full screen menu item because we handle
             // it manually.
