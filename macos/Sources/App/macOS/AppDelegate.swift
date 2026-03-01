@@ -642,6 +642,18 @@ class AppDelegate: NSObject,
                     sub.title = t(sub.title)
                 }
             }
+
+            // Localize items inside the Ghostty (Apple) menu that have no
+            // @IBOutlet: Services, Hide Ghostty, Hide Others, Show All.
+            // These are static xib items in the first submenu (the app menu).
+            if let appMenu = mainMenu.items.first?.submenu {
+                for item in appMenu.items {
+                    let key = item.title
+                    if !key.isEmpty {
+                        item.title = t(key)
+                    }
+                }
+            }
         }
 
         // Localize every known @IBOutlet menu item explicitly so that items
