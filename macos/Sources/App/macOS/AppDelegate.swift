@@ -709,10 +709,37 @@ class AppDelegate: NSObject,
         localize(menuUseAsDefault,         key: "Use as Default Terminal")
         localize(menuSetAsDefaultTerminal,  key: "Make Ghostty the Default Terminal")
 
-        // Final pass: recursively translate any remaining menu items that are
-        // not covered by @IBOutlet bindings above (e.g. Minimize, Zoom,
-        // Select Split, Resize Split, Ghostty Help, and any future additions).
-        localizeMenu(NSApp.mainMenu)
+        // Translate menu items that have no @IBOutlet but exist in the xib.
+        // We find them by walking the menu tree and matching by their English title.
+        if let mainMenu = NSApp.mainMenu {
+            let noOutletKeys: [String: String] = [
+                "Minimize":              t("Minimize"),
+                "Zoom":                  t("Zoom"),
+                "Select Split":          t("Select Split"),
+                "Select Previous Split": t("Select Previous Split"),
+                "Select Next Split":     t("Select Next Split"),
+                "Resize Split":          t("Resize Split"),
+                "Quick Terminal":        t("Quick Terminal"),
+                "Show/Hide All Terminals": t("Show/Hide All Terminals"),
+                "Use as Default":        t("Use as Default"),
+                "Return To Default Size": t("Return To Default Size"),
+                "Ghostty Help":          t("Ghostty Help"),
+            ]
+            func applyNoOutlet(_ menu: NSMenu) {
+                for item in menu.items {
+                    if let translated = noOutletKeys[item.title] {
+                        item.title = translated
+                    }
+                    if item.hasSubmenu {
+                        if let translated = noOutletKeys[item.submenu!.title] {
+                            item.submenu!.title = translated
+                        }
+                        applyNoOutlet(item.submenu!)
+                    }
+                }
+            }
+            applyNoOutlet(mainMenu)
+        }
     }
 
     /// Sync all of our menu item keyboard shortcuts with the Ghostty configuration.
