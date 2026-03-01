@@ -708,6 +708,11 @@ class AppDelegate: NSObject,
 
         localize(menuUseAsDefault,         key: "Use as Default Terminal")
         localize(menuSetAsDefaultTerminal,  key: "Make Ghostty the Default Terminal")
+
+        // Final pass: recursively translate any remaining menu items that are
+        // not covered by @IBOutlet bindings above (e.g. Minimize, Zoom,
+        // Select Split, Resize Split, Ghostty Help, and any future additions).
+        localizeMenu(NSApp.mainMenu)
     }
 
     /// Sync all of our menu item keyboard shortcuts with the Ghostty configuration.

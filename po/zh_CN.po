@@ -600,3 +600,48 @@ msgstr "关闭其他标签页"
 msgid "Move Tab to New Window"
 msgstr "将标签页移至新窗口"
 
+# Window menu and Help menu items missing from po (present in MainMenu.strings)
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Minimize"
+msgstr "最小化"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Zoom"
+msgstr "缩放"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Select Split"
+msgstr "选择分屏"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Select Previous Split"
+msgstr "上一个分屏"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Select Next Split"
+msgstr "下一个分屏"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Resize Split"
+msgstr "调整分屏大小"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Quick Terminal"
+msgstr "快捷终端"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Show/Hide All Terminals"
+msgstr "显示/隐藏所有终端"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Use as Default"
+msgstr "设为默认终端"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Return To Default Size"
+msgstr "恢复默认窗口大小"
+
+#: macos/Sources/App/macOS/MainMenu.xib
+msgid "Ghostty Help"
+msgstr "Ghostty 帮助"
+
