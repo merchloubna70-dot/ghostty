@@ -1381,6 +1381,15 @@ extension AppDelegate: NSMenuItemValidation {
             // terminal window (not quick terminal).
             return NSApp.keyWindow is TerminalWindow
 
+        case NSSelectorFromString("toggleTabBar:"),
+             NSSelectorFromString("toggleTabOverview:"):
+            // These menu items are injected by macOS into the View menu. Their
+            // titles ("Show Tab Bar", "Hide Tab Bar", "Show All Tabs") are set
+            // dynamically by the system, so we translate whatever the current
+            // title is on every validation pass.
+            item.title = item.title.withCString { String(cString: ghostty_translate($0)) }
+            return true
+
         case #selector(undo(_:)):
             let undoLabel = "Undo".withCString { String(cString: ghostty_translate($0)) }
             if undoManager.canUndo {

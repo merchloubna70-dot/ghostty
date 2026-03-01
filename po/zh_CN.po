@@ -561,3 +561,20 @@ msgstr "重置终端"
 msgid "Leave blank to restore the default."
 msgstr "留空以重置至默认标题。"
 
+# macOS system-injected View menu items (toggleTabBar:/toggleTabOverview:)
+#: macos/Sources/App/macOS/AppDelegate.swift
+msgid "Show Tab Bar"
+msgstr "显示标签栏"
+
+#: macos/Sources/App/macOS/AppDelegate.swift
+msgid "Hide Tab Bar"
+msgstr "隐藏标签栏"
+
+#: macos/Sources/App/macOS/AppDelegate.swift
+msgid "Show All Tabs"
+msgstr "显示所有标签页"
+
+#: macos/Sources/App/macOS/AppDelegate.swift
+msgid "Hide Tab Overview"
+msgstr "隐藏标签页概览"
+
